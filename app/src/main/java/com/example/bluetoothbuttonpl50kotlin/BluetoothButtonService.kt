@@ -15,19 +15,13 @@ import java.io.OutputStream
 
 class BluetoothButtonService : Service() {
 
-//    private val REQUEST_ENABLE_BT = 1
-//    private val SPP_UUID = "e1ec7041-83ac-4d9d-8ec7-16f7c3bc5470"
-
     var sd: ScanDevice? = null
     var bluetoothDevice: BluetoothDevice? = null
     private var isConnected = false
     private var isWorked = false
     private var tempSend = ""
-
     private var connectThread: BluetoothButtonService.ConnectThread? = null
     private var connectedThread: BluetoothButtonService.ConnectedThread? = null
-
-    fun BluetoothButtonService() {}
     val LOG_TAG = "BluetoothLogs"
     override fun onCreate() {
         super.onCreate()
@@ -77,7 +71,7 @@ class BluetoothButtonService : Service() {
         isWorked = false
         isConnected = false
         this.connectThread?.cancel()
-        this.connectThread?.cancel()
+        this.connectedThread?.cancel()
     }
     override fun onBind(intent: Intent): IBinder {
         TODO("Return the communication channel to the service.")
